@@ -1,0 +1,16 @@
+﻿@model IdentityModel.Client.UserInfoResponse
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">NHS Login Demo - UserInfo Call</h1>
+</div>
+
+<p>User Claims:</p>
+<ul>
+    @foreach (var claim in Model.Claims)
+    {
+        <li>@claim.Type - @claim.Value</li>
+    }
+</ul>
