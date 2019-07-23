@@ -59,25 +59,9 @@ namespace NHS.Login.Dotnet.Core.Sample
                         {
                             if (context.ProtocolMessage.RequestType == OpenIdConnectRequestType.Authentication)
                             {
-                                var codeVerifier = CryptoRandom.CreateUniqueId(32);
-    
-                                // store codeVerifier for later use
-                                context.Properties.Items.Add("code_verifier", codeVerifier);
-    
-                                // create code_challenge
-                                string codeChallenge;
-                                using (var sha256 = SHA256.Create())
-                                {
-                                    var challengeBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(codeVerifier));
-                                    codeChallenge = Base64Url.Encode(challengeBytes);
-                                }
-    
-                                context.ProtocolMessage.Parameters.Add("code_challenge", codeChallenge);
-                                context.ProtocolMessage.Parameters.Add("code_challenge_method", "S256");
                                 context.ProtocolMessage.Parameters.Add("vtr", "[\"P0.Cp.Cd\", \"P0.Cp.Ck\", \"P0.Cm\"]");                           
                             }
                             
-                           
                             return Task.CompletedTask;
                         },
 
@@ -85,15 +69,9 @@ namespace NHS.Login.Dotnet.Core.Sample
                         {
                             if (context.TokenEndpointRequest?.GrantType == OpenIdConnectGrantTypes.AuthorizationCode)
                             {
-                                if (context.Properties.Items.TryGetValue("code_verifier", out var codeVerifier))
-                                {
-                                    context.TokenEndpointRequest.Parameters.Add("code_verifier", codeVerifier);
-                                }
-                                
                                 context.TokenEndpointRequest.ClientAssertionType =
                                     "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
                                 context.TokenEndpointRequest.ClientAssertion = TokenHelper.CreateClientAuthJwt();
-
                             }
                             
                             return Task.CompletedTask;
