@@ -9,7 +9,7 @@ This repo contains a sample application of how to connect to NHS Login using ASP
  - Generated keypair
  - Access to NHS login sandpit
 
-## To run:
+## Getting started:
 
 Insert your client details into the following files which are located in the root of the project.
 
@@ -36,7 +36,7 @@ var payload = new Dictionary<string, object>()
 ```
 
 
-In the root folder of the project run.
+To run the sample, run the following command in the root of the project.
 ```
     dotnet run
 ```
