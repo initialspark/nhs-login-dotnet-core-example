@@ -4,7 +4,7 @@ This repo contains a sample application of how to connect to NHS Login using ASP
 
 ## Prerequisites:
 
- - VS Code/Visual Studio
+ - VS Code/Visual Studio/Rider
  - ASP.NET Core 2.2
  - Generated keypair
  - Access to NHS login sandpit
