@@ -1,6 +1,6 @@
-# NHS Login Demo
+# NHS login Demo
 
-This repo contains a sample application of how to connect to NHS Login using ASP.NET Core.
+This repo contains a sample application of how to connect to NHS login using ASP.NET Core.
 
 ## Prerequisites:
 
